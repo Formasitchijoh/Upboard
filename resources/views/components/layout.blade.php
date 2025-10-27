@@ -13,12 +13,12 @@
         >
         @vite(['resources/css/app.css','resources/js/app.js'])
     </head>
-    <body class="bg-[#060606] pb-20 text-white">
+    <body class="bg-[#060606] pb-10 text-white">
         <div class="px-10">
             <nav class="flex justify-between items-center py-4 items-center w-[90%] mx-auto border-b border-white/10">
                 <div class="">
                     <a href="" class="">
-                        <img src="{{ Vite::asset('resources/images/logo.svg') }}" alt="" class="">
+                        {{-- <img src="{{ Vite::asset('resources/images/logo.svg') }}" alt="" class=""> --}}
                     </a>
                 </div>
                 <div class="space-x-6 font-bold">
@@ -28,7 +28,23 @@
                     <a href="#" class="">Companies</a>
 
                 </div>
-                <div class="mt-10 max-w-[986px]">Post a Job</div>
+                @auth
+                    <div class="space-x-6 flex ">
+                        <a href="/jobs/create" class="">Post a Job</a>
+
+                        <form method="POST" action="/logout">
+                            @csrf
+                            @method('DELETE')
+
+                            <button>Log Out</button>
+                        </form>
+                    </div>
+                @endauth
+
+                @guest
+                <a href="/register" class="">SignUp</a>
+                <a href="/login" class="">Login</a>
+                @endguest
 
             </nav>
             <main class="">
