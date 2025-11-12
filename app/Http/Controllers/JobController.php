@@ -19,7 +19,7 @@ class JobController extends Controller
     public function index()
     { 
         // Optimizing the query we need to use the with query to get the
-        // relationships to the model else it will cause an N+1 Problem
+        // relationships of the model else it will cause an N+1 Problem
         $jobs = Job::latest()->with(['employer', 'tags'])->get()->groupBy('featured');
         // return $jobs;
         return view('jobs.index', [
@@ -50,6 +50,7 @@ class JobController extends Controller
         'url' => ['required', 'active_url'],
         'tags' => ['nullable'],
        ]);
+       
        $jobAAttributes['featured'] = $request->has('featured'); // if the resuest has a value for that checkbox
 
        // Taking this pathways means that the user is Authenticated

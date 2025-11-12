@@ -12,7 +12,7 @@ Route::get('/jobs/create', [JobController::class, 'create'])->middleware('auth')
 Route::post('/jobs', [JobController::class, 'store'])->middleware('auth'); // Stores the data in the Database
 
 Route::get('/search', SearchController::class);
-Route::get('/tags/{tag:name}', TagController::class); // Route model binding od the associated tag id to
+Route::get('/tags/{tag:name}', TagController::class); // Route model binding of the associated tag id to
 
 // Grouping the routes for the Authentication
 Route::middleware('guest')->group(function () {
